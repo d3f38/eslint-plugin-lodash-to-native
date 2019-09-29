@@ -1,26 +1,24 @@
 # eslint-plugin-lodash-to-native
 
-description
+ESLint плагин с правилом, которое находит использование функции `_.map`, например `_.map(collection, fn)`, и, если это возможно, предлагает заменить его на использование нативного `Array#map`.
 
-## Installation
+## Установка
 
-You'll first need to install [ESLint](http://eslint.org):
+Для начала установите [ESLint](http://eslint.org):
 
 ```
 $ npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-lodash-to-native`:
+Далее установите `eslint-plugin-lodash-to-native`:
 
 ```
-$ npm install eslint-plugin-lodash-to-native --save-dev
+$ npm install -S github.com/d3f38/eslint-plugin-lodash-to-native.git
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-lodash-to-native` globally.
+## Использование
 
-## Usage
-
-Add `map` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Добавьте `lodash-to-native` в раздел плагинов вашей конфигурации ` .eslintrc`. 
 
 ```json
 {
@@ -31,7 +29,7 @@ Add `map` to the plugins section of your `.eslintrc` configuration file. You can
 ```
 
 
-Then configure the rules you want to use under the rules section.
+Затем настройте правила:
 
 ```json
 {
@@ -41,9 +39,22 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
-## Supported Rules
+## Показ сообщений и исправления
+При использовании **без** параметра `--fix` показывает сообщение: 
+```Можно использовать нативный `Array#map` ```
 
-* Fill in provided rules here
+При использовании c параметром `--fix` автоматически исправляет проблемы, о которых сообщает правило. Пример:
+
+``` ```
+```js
+return _.map(collection, fn);
+```
+заменяется на:
+```js
+return (Array.isArray(collection)) ?
+    collection.map(fn) :
+    _.map(collection, fn);
+```
 
 
 
