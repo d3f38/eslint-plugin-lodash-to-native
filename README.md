@@ -13,7 +13,7 @@ $ npm i eslint --save-dev
 Далее установите `eslint-plugin-lodash-to-native`:
 
 ```
-$ npm install -S github.com/d3f38/eslint-plugin-lodash-to-native.git
+$ npm install -S https://github.com/d3f38/eslint-plugin-lodash-to-native.git
 ```
 
 ## Использование
